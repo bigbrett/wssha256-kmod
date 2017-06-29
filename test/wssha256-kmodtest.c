@@ -70,7 +70,7 @@ int main()
     }
 
     // read back the response from the LKM and print
-    ret = read(fd, digest, SHA256_DGST_SIZE);        
+    ret = read(fd, (void*)digest, SHA256_DGST_SIZE);        
     if (ret < 0){
       perror("Failed to read the message from the device.");
       return errno;
