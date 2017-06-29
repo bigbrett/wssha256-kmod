@@ -1,0 +1,13 @@
+SRCPREFIX := wssha256-uapi
+SRCFILE := $(SRCPREFIX).c
+OBJFILE := $(SRCPREFIX).o 
+SOFILE := lib$(SRCPREFIX).so
+ARFILE := lib$(SRCPREFIX).a
+
+all:
+	gcc -Wall -g -fPIC -c -o $(OBJFILE) $(SRCFILE)
+	gcc -shared -o $(SOFILE) $(OBJFILE)
+	ar -cvq $(ARFILE) $(OBJFILE)
+
+clean: 
+	rm -f *.o *.so *.a 
