@@ -2,8 +2,8 @@ CMakeCache.txt
 CMakeFiles
 CMakeScripts
 Testing
-Makefile
-!kmod/Makefile
+*Makefile
+!/Makefile
 cmake_install.cmake
 install_manifest.txt
 compile_commands.json

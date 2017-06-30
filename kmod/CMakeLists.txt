@@ -6,12 +6,11 @@ SET( MODULE_FILE ${MODULE_NAME}.ko)
 
 SET( MODULE_OUTPUT_DIR ${CMAKE_BINARY_DIR}/modules/${MODULE_NAME})
 
-SET( KERNEL_DIR "/lib/modules/${CMAKE_SYSTEM_VERSION}/build")
-
-message("***********************************************************************************************************  KERNEL_DIR = ${KERNEL_DIR}")
+SET( KERNEL_SRC "/lib/modules/${CMAKE_SYSTEM_VERSION}/build")
+message("***********************************************************************************************************  KERNEL_SRC = ${KERNEL_SRC}")
 message("***********************************************************************************************************  CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
 
-SET( KBUILD_COMMAND ${CMAKE_MAKE_PROGRAM} -C ${KERNEL_DIR} M=${MODULE_OUTPUT_DIR} modules)
+SET( KBUILD_COMMAND ${CMAKE_MAKE_PROGRAM} -C ${KERNEL_SRC} M=${MODULE_OUTPUT_DIR} modules)
 
 CONFIGURE_FILE( Kbuild.in ${MODULE_OUTPUT_DIR}/Kbuild)
 
