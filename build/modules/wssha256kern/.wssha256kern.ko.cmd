@@ -1,1 +1,0 @@
-cmd_/home/brett/kmodtest/build/modules/wssha256kern/wssha256kern.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/brett/kmodtest/build/modules/wssha256kern/wssha256kern.ko /home/brett/kmodtest/build/modules/wssha256kern/wssha256kern.o /home/brett/kmodtest/build/modules/wssha256kern/wssha256kern.mod.o
