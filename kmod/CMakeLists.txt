@@ -6,7 +6,8 @@ SET( MODULE_FILE ${MODULE_NAME}.ko)
 
 SET( MODULE_OUTPUT_DIR ${CMAKE_BINARY_DIR}/modules/${MODULE_NAME})
 
-SET( KERNEL_SRC "/lib/modules/${CMAKE_SYSTEM_VERSION}/build")
+EXECUTE_PROCESS(COMMAND uname -r OUTPUT_VARIABLE UNAME_R OUTPUT_STRIP_TRAILING_WHITESPACE)
+SET( KERNEL_SRC "/lib/modules/${UNAME_R}/build")
 message("***********************************************************************************************************  KERNEL_SRC = ${KERNEL_SRC}")
 message("***********************************************************************************************************  CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
 
