@@ -9,4 +9,3 @@ all:
 clean:
 	-rm -rfv build/ 
 	-rm -fv $(shell find . | grep ~$$)
-	-cd kmod/; make clean
