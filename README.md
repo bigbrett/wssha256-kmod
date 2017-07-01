@@ -29,15 +29,33 @@ $ git clone https://github.com/bigbrett/wssha256-kmod
 $ cd wssha256-kmod
 $ make
 ```
-Do note that CMake does not perform any installation, as this will be handled by the Yocto recipe. The important output binaries are as follows:
-* `wssha256-kmod/build/kmod/wssha256kern.ko`: the loadable kernel module
-* `wssha256-kmod/build/lib/libwssha256-kmod.so`: Userspace API shared (dynamic) library 
-* `wssha256-kmod/build/lib/libwssha256-kmod.so`: Userspace API static library
-* `wssha256-kmod/build/test/wssha256-kmodtest`: Userspace test executable
+Do note that CMake does not perform any installation, as this is expected to be handled by the Yocto recipe. Why? because I'm lazy. The important output binaries are as follows:
+* `wssha256-kmod/build/kmod/wssha256kern.ko`:           the loadable kernel module
+* `wssha256-kmod/build/lib/libwssha256-uapi.so`:        Userspace API shared (dynamic) library 
+* `wssha256-kmod/build/lib/libwssha256-uapi-static.a`:  Userspace API static library
+* `wssha256-kmod/build/test/wssha256-kmodtest`:         Userspace test executable
 
 # Usage 
+### Loadable Kernel Module
+* Before loading the kernel module, ensure the FPGA bitstream is programmed correctly. **If the wssha256 hardware block is not accessible in the memory map, then loading the kernel module will cause a kernel panic!!**
+* Load the module using `$ insmod /path/to/wssha256-kmod/build/kmod/wssha256kern.ko`. 
+* You can disable the kernel buffer printing to stdout by running `dmesg -D` (and re-enable with `dmesg -E`). 
+
+### Userspace API Shared Library 
+To link a C program against the shared library, just use the standard steps. E.G. when compiling foo.c, which uses the library: `$ gcc foo.c -L/path/to/lib -lwssha256-uapi`. And don't forget to set `LD_LIBRARY_PATH` to `/path/to/lib` if the library is not located at /usr/lib!
+
+### Userspace API Static Library 
+To link a C program against the static library, just use the standard steps. E.G. when compiling foo.c, which uses the library: `$ gcc foo.c libwssha256uapi.a`
+
+### Userspace Test Executable
+`wssha256-kmodtest` is a self-checking test program that can be run in userspace to test the correct operation of the LKM. Before you run it, ensure that:
+1. The bitstream containing the hardware is programmed. This can be done through Vivado on the host machine, or on the target by running `$ cat /path/to/bitstream.bit > /dev/xdevcfg`
+2. The wssha256kern.ko module is loaded. If not, load it with `$ insmod /path/to/wssha256-kmod/build/kmod/wssha256kern.ko`. 
+
+
+ If the test recipe is not added to your build for some reason, you can manually build it using the command bitbake ws<METHOD>test
 
 # TODO 
 
 # License
-
+MIT
