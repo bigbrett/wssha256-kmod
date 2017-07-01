@@ -8,9 +8,9 @@ ADD_CUSTOM_TARGET( ${MODULE_NAME} ALL DEPENDS ${MODULE_OUTPUT_DIR}/${MODULE_FILE
 # the search path for the kernel headers. Otherwise, we are not running under Yocto and can use
 # regular CMake Variables to compile the kernel module
 IF(${KERNEL_SRC})
-    MESSAGE("KERNEL_SRC DEFINED!")
+    MESSAGE(FATAL_ERROR "KERNEL_SRC DEFINED!")
 ELSE()
-    MESSAGE("KERNEL_SRC UNDEFINED!")
+    MESSAGE(FATAL_ERROR "KERNEL_SRC UNDEFINED!")
     SET( KERNEL_SRC "/lib/modules/${CMAKE_SYSTEM_VERSION}/build")
 ENDIF()
 
