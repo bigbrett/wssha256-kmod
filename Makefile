@@ -2,7 +2,7 @@ all:
 	-rm -rf build
 	-mkdir build
 	@cd build ;\
-	cmake .. ;\
+	cmake -DKERNEL_SRC="foo" .. ;\
 	make ;
 
 
