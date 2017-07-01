@@ -2,12 +2,11 @@ PROJECT(kmodtest)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-
+# Check if we have passed KERNEL_SRC to cmake
+# if we have, strip it of whitespace
 IF(KERNEL_SRC)
     STRING(STRIP ${KERNEL_SRC} KERNEL_SRC)
     MESSAGE("KERNEL_SRC = ${KERNEL_SRC}")
-ELSE()
-    MESSAGE("KERNEL_SRC UNDEFINED")
 ENDIF()
 
 ADD_SUBDIRECTORY(kmod)
