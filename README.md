@@ -4,23 +4,21 @@ Linux loadable kernel module supporting the wssha256 hardware accelerator, compl
 # Table of Contents
 1. Overview
 2. Dependencies 
-1. Building the software
-2. The Kernel Module
-3. Userspace API Libraries
-4. Userspace Test Program
+3. Building the software
+4. Usage
 5. Misc.
 
-# Overview 
+# 1. Overview 
 The wssha256 hardware accelerator targets the Xilinx Zynq7000 running the [linux-xlnx kernel](https://github.com/Xilinx/linux-xlnx "linux-xlnx"). This repository can be built in a number of ways: on its own on an x86 host system, natively on the Zynq (if you are insane), or in a cross-compiling environment. However, it was primarily designed to be integrated into a custom image built with the Yocto Linux build system. The Yocto layer that incorporates the software provided in this
 repository can be found at [meta-wscryptohw](https://github.com/bigbrett/meta-wscryptohw "meta-wscryptohw")
 
-# Dependencies
+# 2. Dependencies
 * Linux (somewhat recent)
 * CMake 
 * Make 
 * OpenSSL 
 
-# Building the software
+# 3. Building the Software
 Before you can build the software ensure you have the dependencies installed.  
 
 To build the module and supporting software targeting a host machine (I don't know why you would...maybe just to see if it builds?), do the following: 
@@ -35,7 +33,7 @@ Do note that CMake does not perform any installation, as this is expected to be 
 * `wssha256-kmod/build/lib/libwssha256-uapi-static.a`:  Userspace API static library
 * `wssha256-kmod/build/test/wssha256-kmodtest`:         Userspace test executable
 
-# Usage 
+# 4. Usage 
 ### Loadable Kernel Module
 * Before loading the kernel module, ensure the FPGA bitstream is programmed correctly. **If the wssha256 hardware block is not accessible in the memory map, then loading the kernel module will cause a kernel panic!!**
 * Load the module using `$ insmod /path/to/wssha256-kmod/build/kmod/wssha256kern.ko`. 
@@ -54,7 +52,5 @@ To link a C program against the static library, just use the standard steps. E.G
 
 To run the test program, just invoke the executable.
 
-# TODO 
+# 5. Misc. 
 
-# License
-MIT
