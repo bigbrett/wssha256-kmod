@@ -14,7 +14,7 @@ Linux loadable kernel module supporting the wssha256 hardware accelerator, compl
 The wssha256 hardware accelerator targets the Xilinx Zynq7000 running the [linux-xlnx kernel](https://github.com/Xilinx/linux-xlnx "linux-xlnx"). This repository can be built in a number of ways: on its own on an x86 host system, natively on the Zynq (if you are insane), or in a cross-compiling environment. However, it was primarily designed to be integrated into a custom image built with the Yocto Linux build system. The Yocto layer that incorporates the software provided in this
 repository can be found at [meta-wscryptohw](https://github.com/bigbrett/meta-wscryptohw "meta-wscryptohw")
 
-# Dependedncies
+# Dependencies
 * Linux (somewhat recent)
 * CMake 
 * Make 
