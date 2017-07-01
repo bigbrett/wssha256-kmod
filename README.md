@@ -52,8 +52,7 @@ To link a C program against the static library, just use the standard steps. E.G
 1. The bitstream containing the hardware is programmed. This can be done through Vivado on the host machine, or on the target by running `$ cat /path/to/bitstream.bit > /dev/xdevcfg`
 2. The wssha256kern.ko module is loaded. If not, load it with `$ insmod /path/to/wssha256-kmod/build/kmod/wssha256kern.ko`. 
 
-
- If the test recipe is not added to your build for some reason, you can manually build it using the command bitbake ws<METHOD>test
+To run the test program, just invoke the executable.
 
 # TODO 
 
