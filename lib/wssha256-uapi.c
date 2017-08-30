@@ -66,10 +66,6 @@ int32_t sha256(uint8_t *datap, uint64_t datalen,uint8_t *digestp, uint32_t *dige
 		return errno;
 	}
 
-	// TODO THIS SLEEP IS NECESSARY TO ENSURE THERE IS ENOUGH TIME FOR THE HW DEVICE TO COMPLETE.
-	// IT SHOULD BE REPLACED WITH A READY CHECK, TO BE IMPLEMENTED IN THE DRIVER USING IOCTL
-	sleep(1);
-
 	// read back the response from the LKM and print
 	ret = read(fd, digestp, SHA256_DGST_SIZE);        
 	if (ret < 0){
