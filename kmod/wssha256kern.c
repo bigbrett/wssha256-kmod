@@ -160,12 +160,8 @@ static void __exit wssha256_exit(void){
  */
 static int wssha256_open(struct inode *inodep, struct file *filep){
     if (numberOpens > 0)
-    {
-        //printk(KERN_INFO "wssha256: Error: device already open\n");
         return -EBUSY;
-    }
     numberOpens++;
-    //printk(KERN_INFO "wssha256: Device has been opened %d time(s)\n", numberOpens);
     return 0;
 }
 
@@ -186,7 +182,6 @@ static ssize_t wssha256_read(struct file *filep, char *buffer, size_t len, loff_
     // Copy digest back into userspace (*to,*from,size)
     copy_to_user(buffer, (char*)digest, len);
 
-    //printk(KERN_INFO "wssha256: Copied digest of length %d bytes back to userspace\n", len);
     return len;  // clear the position to the start and return 0
 }
 
@@ -202,7 +197,6 @@ static ssize_t wssha256_read(struct file *filep, char *buffer, size_t len, loff_
 static ssize_t wssha256_write(struct file *filep, const char *buffer, size_t len, loff_t *offset)
 {  
     // init hardware parameters 
-    //iowrite32(SHA256_MSG_SIZE, vbaseaddr+XSHA256_AXILITES_ADDR_BYTES_DATA);// set bytes to 256
     iowrite32(len, vbaseaddr+XSHA256_AXILITES_ADDR_BYTES_DATA); // set bytes to "len"
     iowrite32(0, vbaseaddr+XSHA256_AXILITES_ADDR_BASE_OFFSET_DATA); // set offset to 0 
 
