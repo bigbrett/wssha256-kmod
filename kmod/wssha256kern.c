@@ -20,7 +20,7 @@
 #include <linux/sizes.h>
 
 // TODO this needs to be changed...we should not be hardcoding these
-#define WSSHA256BASEADDR 0x43C00000
+#define WSSHA256BASEADDR 0x43C10000
 #define XSHA256_AXILITES_ADDR_AP_CTRL          0x000
 #define XSHA256_AXILITES_ADDR_GIE              0x004
 #define XSHA256_AXILITES_ADDR_IER              0x008
