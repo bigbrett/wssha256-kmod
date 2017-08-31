@@ -220,7 +220,6 @@ static ssize_t wssha256_write(struct file *filep, const char *buffer, size_t len
  *  param: filep A pointer to a file object (defined in linux/fs.h)
  */
 static int wssha256_release(struct inode *inodep, struct file *filep){
-    //printk(KERN_INFO "wssha256: Device successfully closed\n");
     numberOpens--;
     return 0;
 }
